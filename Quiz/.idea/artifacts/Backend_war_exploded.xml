@@ -13,6 +13,14 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Backend" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.29" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.19.4" />
+          <element id="archive" name="DatabaseGenerator-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="DatabaseGenerator" />
+          </element>
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.0.1" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/Backend/target/Backend-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
