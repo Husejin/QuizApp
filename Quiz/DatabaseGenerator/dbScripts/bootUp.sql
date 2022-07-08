@@ -9,23 +9,21 @@ QuizApp;
 DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz`
 (
-    `id`             INT AUTO_INCREMENT,
-    `title`   TEXT(500),
-    `questionId`        JSON DEFAULT NULL,
-    `maxTime`        INT unsigned DEFAULT 0,
-    `value`          INT unsigned DEFAULT 0,
+    `id`    INT AUTO_INCREMENT,
+    `title` TEXT(500),
+    `image` LONGBLOB,
     PRIMARY KEY (`id`)
 );
 DROP TABLE IF EXISTS question;
 CREATE TABLE `question`
 (
-    `id`             INT AUTO_INCREMENT,
-    `questionText`   TEXT(500),
-    `answers`        JSON DEFAULT NULL,
-    `maxTime`        INT  DEFAULT 0,
-    `value`          INT  DEFAULT 0,
-    `quizID`         INT  DEFAULT 0,
-    FOREIGN KEY (`quizID`) REFERENCES quiz(id),
+    `id`           INT AUTO_INCREMENT,
+    `questionText` TEXT(500),
+    `answers`      JSON DEFAULT NULL,
+    `maxTime`      INT  DEFAULT 0,
+    `value`        INT  DEFAULT 0,
+    `quizID`       INT  DEFAULT 0,
+    FOREIGN KEY (`quizID`) REFERENCES quiz (id),
     PRIMARY KEY (`id`)
 );
 
