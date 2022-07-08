@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class QuizMapper {
 
@@ -33,7 +32,6 @@ public class QuizMapper {
             List<QuizEntity> firstQuizCollected = quizEntities.stream().filter(q -> q.getId() == quizId).toList();
             QuestionEntity questionEntity = new QuestionEntity();
             questionEntity.setQuestionText(questionText);
-            questionEntity.setQuizId(quizId);
             questionEntity.setValue(value);
             questionEntity.setMaxTime(maxtime);
             questionEntity.setAnswers(Arrays.stream(answers).toList());
@@ -43,6 +41,7 @@ public class QuizMapper {
                 quizEntity.setId(quizId);
                 quizEntity.setAlternateImage(image);
                 quizEntity.setTitle(title);
+                quizEntity.setQuestions(new ArrayList<>());
                 quizEntity.getQuestions().add(questionEntity);
                 quizEntities.add(quizEntity);
             }
