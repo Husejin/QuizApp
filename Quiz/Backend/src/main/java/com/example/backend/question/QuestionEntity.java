@@ -1,5 +1,6 @@
-package com.example.backend.quiz;
+package com.example.backend.question;
 
+import com.example.backend.quiz.AnswerEntity;
 import com.mysql.cj.xdevapi.JsonArray;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class QuestionEntity {
     private List<AnswerEntity> answers;
     private Integer maxTime;
     private Integer value;
-
+    private Integer quizId;
 
     public Integer getId() {
         return id;
@@ -53,4 +54,11 @@ public class QuestionEntity {
         this.value = value;
     }
 
+    public Integer getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(Integer quizId) {
+        this.quizId = quizId;
+    }
 }

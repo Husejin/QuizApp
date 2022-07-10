@@ -1,5 +1,7 @@
 package com.example.backend.quiz;
 
+import com.example.backend.question.QuestionEntity;
+
 import java.util.List;
 
 public class QuizEntity {

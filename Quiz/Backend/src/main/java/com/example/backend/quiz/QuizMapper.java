@@ -1,5 +1,6 @@
 package com.example.backend.quiz;
 
+import com.example.backend.question.QuestionEntity;
 import com.google.gson.Gson;
 
 import java.sql.Blob;
