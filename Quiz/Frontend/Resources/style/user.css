@@ -1,0 +1,50 @@
+html
+{
+  height: 100%;
+}
+
+.header
+{
+  text-align: center;
+}
+
+.footer
+{
+  position: absolute;
+  bottom: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.enterPIN
+{
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.pinZone
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%,-50%);
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+#loginButton
+{
+  float: right;
+}
