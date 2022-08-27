@@ -20,7 +20,7 @@ public class QuizzesService {
         String getAllQuizzesString = "SELECT quiz.id, quiz.title, quiz.image, q.questiontext, q.answers, q.maxtime, q.value FROM quiz INNER JOIN question q on quiz.id = q.quizID";
         PreparedStatement getAllQuizzesQuery = connection.prepareStatement(getAllQuizzesString);
         ResultSet queryResults = getAllQuizzesQuery.executeQuery();
-        List<QuizEntity> quizEntities = QuizMapper.resultSetToQuizzes(queryResults);
+        List<QuizEntity> quizEntities = QuizMapper.toQuizList(queryResults);
         connection.close();
         return quizEntities;
     }
@@ -43,7 +43,7 @@ public class QuizzesService {
         PreparedStatement getQuizByIdQuery = connection.prepareStatement(getQuizByIdString);
         getQuizByIdQuery.setInt(1, id);
         ResultSet queryResults = getQuizByIdQuery.executeQuery();
-        List<QuizEntity> quizEntities = QuizMapper.resultSetToQuizzes(queryResults);
+        List<QuizEntity> quizEntities = QuizMapper.toQuizList(queryResults);
         connection.close();
         if (quizEntities.isEmpty())
             return null;

@@ -24,4 +24,13 @@ public class AnswerEntity {
     public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnswerEntity that = (AnswerEntity) o;
+        return isCorrect() == that.isCorrect() && getAnswerText().equals(that.getAnswerText());
+    }
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class QuizMapper {
 
-    public static List<QuizEntity> resultSetToQuizzes(ResultSet queryResults) throws SQLException {
+    public static List<QuizEntity> toQuizList(ResultSet queryResults) throws SQLException {
         List<QuizEntity> quizEntities = new ArrayList<>();
         while (queryResults.next()) {
             int quizId = queryResults.getInt(1);
