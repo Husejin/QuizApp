@@ -11,10 +11,32 @@ body {
   flex-direction: column;
 }
 
-
+.allUsers
+{
+  margin: 0.5%;
+  padding: 10px;
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+}
 .oneQuiz .sp1 .quizImage
 {
   width: 40%;
+}
+.oneUser .sp1 .userName
+{
+  width: 33%;
+  text-align: center;
+}
+.oneUser .sp1 .userPass
+{
+  width: 33%;
+  text-align: center;
+}
+.oneUser .sp1 .userRole
+{
+  width: 33%;
+  text-align: center;
 }
 
 .imageStyle
@@ -29,9 +51,19 @@ body {
   text-align: center;
 }
 
+
+
 .oneQuiz
 {
 padding: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.oneUser
+{
+  padding: 10px;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -54,7 +86,32 @@ padding: 10px;
   border: 2px solid black;
 }
 
+.oneUser .sp1
+{
+  margin: 0.25%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+}
+
+.oneUser .sp2
+{
+  margin: 0.25%;
+  width: 20%;
+  text-align: center;
+  border: 2px solid black;
+}
+
 .titleBar
+{
+  margin: 0.5%;
+  padding: 10px;
+  display: flex;
+  border: 2px solid black;
+}
+
+.titleBar2
 {
   margin: 0.5%;
   padding: 10px;
@@ -73,6 +130,22 @@ padding: 10px;
 .titleBar .sp2
 {
   width: 16%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.titleBar2 .sp1
+{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleBar2 .sp2
+{
+  width: 20%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -166,4 +239,9 @@ padding: 10px;
 {
   position: absolute;
   bottom: 0;
+}
+
+#HomeButton
+{
+  align-items: end;
 }
