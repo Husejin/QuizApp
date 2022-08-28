@@ -17,7 +17,7 @@ public class QuizzesService {
     public static List<QuizEntity> getAllQuizzes() throws SQLException {
 
         connection = DBConnector.getConnection();
-        String getAllQuizzesString = "SELECT quiz.id, quiz.title, quiz.image, q.questiontext, q.answers, q.maxtime, q.value FROM quiz INNER JOIN question q on quiz.id = q.quizID";
+        String getAllQuizzesString = "SELECT quiz.id, quiz.title, quiz.image, q.questiontext, q.answers, q.maxtime, q.value, quiz.order, q.id FROM quiz INNER JOIN question q on quiz.id = q.quizID";
         PreparedStatement getAllQuizzesQuery = connection.prepareStatement(getAllQuizzesString);
         ResultSet queryResults = getAllQuizzesQuery.executeQuery();
         List<QuizEntity> quizEntities = QuizMapper.toQuizList(queryResults);
@@ -39,7 +39,7 @@ public class QuizzesService {
 
     public static QuizEntity getQuizById(Integer id) throws SQLException {
         connection = DBConnector.getConnection();
-        String getQuizByIdString = "SELECT quiz.id, quiz.title, quiz.image, q.questiontext, q.answers, q.maxtime, q.value FROM quiz INNER JOIN question q on quiz.id = q.quizID WHERE quizID=?";
+        String getQuizByIdString = "SELECT quiz.id, quiz.title, quiz.image, q.questiontext, q.answers, q.maxtime, q.value, quiz.order, q.id FROM quiz INNER JOIN question q on quiz.id = q.quizID WHERE quizID=?";
         PreparedStatement getQuizByIdQuery = connection.prepareStatement(getQuizByIdString);
         getQuizByIdQuery.setInt(1, id);
         ResultSet queryResults = getQuizByIdQuery.executeQuery();

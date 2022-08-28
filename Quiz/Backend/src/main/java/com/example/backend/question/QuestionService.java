@@ -18,14 +18,13 @@ public class QuestionService {
         try {
             connection = DBConnector.getConnection();
             Gson gson = new Gson();
-            String updateQuestionString = "UPDATE question SET questionText=?,answers=?,maxTime=?,value=?,orderNumber=? WHERE id=?";
+            String updateQuestionString = "UPDATE question SET questionText=?,answers=?,maxTime=?,value=? WHERE id=?";
             PreparedStatement updateQuestionQuery = connection.prepareStatement(updateQuestionString);
             updateQuestionQuery.setString(1, questionEntity.getQuestionText());
             updateQuestionQuery.setString(2, gson.toJsonTree(questionEntity.getAnswers()).getAsString());
             updateQuestionQuery.setInt(3, questionEntity.getMaxTime());
             updateQuestionQuery.setInt(4, questionEntity.getValue());
             updateQuestionQuery.setInt(5, questionEntity.getId());
-            updateQuestionQuery.setInt(6,questionEntity.getOrderNumber());
             updateQuestionQuery.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -38,14 +37,13 @@ public class QuestionService {
         try {
             connection = DBConnector.getConnection();
             Gson gson = new Gson();
-            String createQuestionString = "INSERT INTO  question VALUES (null,?,?,?,?,?,?);";
+            String createQuestionString = "INSERT INTO  question VALUES (null,?,?,?,?,?);";
             PreparedStatement updateQuestionQuery = connection.prepareStatement(createQuestionString);
             updateQuestionQuery.setString(1, questionEntity.getQuestionText());
             updateQuestionQuery.setString(2, gson.toJsonTree(questionEntity.getAnswers()).getAsString());
             updateQuestionQuery.setInt(3, questionEntity.getMaxTime());
             updateQuestionQuery.setInt(4, questionEntity.getValue());
             updateQuestionQuery.setInt(5, questionEntity.getQuizId());
-            updateQuestionQuery.setInt(6,questionEntity.getOrderNumber());
             updateQuestionQuery.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -57,7 +55,7 @@ public class QuestionService {
     {
         try {
             connection = DBConnector.getConnection();
-            Gson gson = new Gson();
+
             String getQuestionString = "SELECT * FROM question WHERE id = ?;";
             PreparedStatement getQuestionQuery = connection.prepareStatement(getQuestionString);
             getQuestionQuery.setInt(1,questionEntity.getId());

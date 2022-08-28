@@ -1,6 +1,7 @@
 package com.example.backend.server;
 
 import com.example.backend.question.QuestionEntity;
+
 import static com.example.backend.user.UserRoles.UserRole;
 
 public class Message {
@@ -8,7 +9,7 @@ public class Message {
     private String quizPin;
     private String userName;
     private Boolean proceedToNextQuestion;
-    private QuestionEntity questionToCheck;
+    private QuestionEntity question;
     private MessageType messageType;
     private ResponseState responseState;
     private Integer quizId;
@@ -62,12 +63,12 @@ public class Message {
         this.proceedToNextQuestion = proceedToNextQuestion;
     }
 
-    public QuestionEntity getQuestionToCheck() {
-        return questionToCheck;
+    public QuestionEntity getQuestion() {
+        return question;
     }
 
-    public void setQuestionToCheck(QuestionEntity questionToCheck) {
-        this.questionToCheck = questionToCheck;
+    public void setQuestion(QuestionEntity question) {
+        this.question = question;
     }
 
     public MessageType getMessageType() {
@@ -86,6 +87,7 @@ public class Message {
         this.responseState = responseState;
     }
 
+
     @Override
     public String toString() {
         return "Message{" +
@@ -93,7 +95,7 @@ public class Message {
                 ", quizPin='" + quizPin + '\'' +
                 ", userName='" + userName + '\'' +
                 ", proceedToNextQuestion=" + proceedToNextQuestion +
-                ", questionToCheck=" + questionToCheck +
+                ", questionToCheck=" + question +
                 ", messageType=" + messageType +
                 '}';
     }

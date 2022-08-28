@@ -12,7 +12,7 @@ public class QuestionEntity {
     private Integer maxTime;
     private Integer value;
     private Integer quizId;
-    private Integer orderNumber;
+
 
     public Integer getId() {
         return id;
@@ -62,12 +62,5 @@ public class QuestionEntity {
         this.quizId = quizId;
     }
 
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
 
 }

@@ -1,35 +1,34 @@
-import {getCookie} from "../utilityServices/cookieService.js";
+import {getCookie, setCookie} from "../utilityServices/cookieService.js";
 
 
-if (getCookie('userName') !== null) {
+if (getCookie('quizPin') === null) {
     generatePinForm();
-    let joinButton = document.getElementById('joinQuizButton');
-    let userNameField = document.getElementById('userName');
-    joinButton.onclick = joinQuizListener
 } else {
     generateUsernameForm();
-
 }
 
 
 function joinQuizListener() {
+    let userNameField = document.getElementById('userName');
     let userName = userNameField.value;
     if (userName !== '') {
         joinQuiz(userName);
     } else {
-        alert("Plaese enter a quiz pin first")
+        alert("Plaese enter a username first")
     }
 
 
 }
 
 function joinQuiz(userName) {
-    let testSocket = new WebSocket("ws://localhost:8080/Backend_war_exploded/quiz_server?userId=1");
+    let testSocket = new WebSocket("ws://localhost:8080/Backend_war_exploded/quiz_server");
 
     testSocket.onopen = function (e) {
         alert("[open] Connection established");
         alert("Sending to server");
-        testSocket.send("{userRole: 'PLAYER', messageType: 'JOIN', userName: 'HUSKO'}");
+        console.log(getCookie('quizPin'));
+        testSocket.send(`{userRole: 'PLAYER', quizPin: '${getCookie('quizPin')}', messageType: 'JOIN', userName: '${userName}'}`);
+
     };
 
     testSocket.onmessage = function (event) {
@@ -38,12 +37,6 @@ function joinQuiz(userName) {
 }
 
 function generatePinForm() {
-    // <label htmlFor="userName">
-    //     Username: </label>
-    // <input id="userName">
-    //     <button id="joinQuizButton">
-    //         Join
-    //     </button>
     let panel = document.getElementById('mainPanel');
     panel.innerHTML = '';
     let label = document.createElement('label');
@@ -57,13 +50,33 @@ function generatePinForm() {
     button.setAttribute('id', 'joinQuizButton');
     button.innerHTML = 'Join';
 
+
+    button.onclick = savePin;
+
     panel.appendChild(label);
     panel.appendChild(input);
     panel.appendChild(button);
 }
 
-function generateUsernameForm() {
+function savePin() {
+    let quizPinField = document.getElementById('quizPin');
+    if (quizPinField.value === null)
+        alert("Please enter a pin first");
+    else {
+        $.get('http://localhost:8080/Backend_war_exploded/checkQuizPin?', {quizPin: quizPinField.value},
+            (data) => {
+                if (JSON.parse(data) === 'FAILURE') {
+                    alert('You entered an invalid Quiz Pin')
+                } else {
+                    setCookie('quizPin',quizPinField.value);
+                    generateUsernameForm();
+                }
+            })
+    }
 
+}
+
+function generateUsernameForm() {
     let panel = document.getElementById('mainPanel');
     panel.innerHTML = '';
     let label = document.createElement('label');
@@ -76,6 +89,8 @@ function generateUsernameForm() {
     let button = document.createElement('button');
     button.setAttribute('id', 'usernameButton');
     button.innerHTML = 'Start';
+
+    button.onclick = joinQuizListener;
 
     panel.appendChild(label);
     panel.appendChild(input);

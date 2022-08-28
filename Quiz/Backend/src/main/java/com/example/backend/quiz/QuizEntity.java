@@ -1,6 +1,7 @@
 package com.example.backend.quiz;
 
 import com.example.backend.question.QuestionEntity;
+import com.mysql.cj.xdevapi.JsonArray;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class QuizEntity {
     private String title;
     private String alternateImage;
     private List<QuestionEntity> questions;
+    private List<Integer> order;
 
     public Integer getId() {
         return id;
@@ -40,5 +42,13 @@ public class QuizEntity {
 
     public void setQuestions(List<QuestionEntity> questions) {
         this.questions = questions;
+    }
+
+    public List<Integer> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Integer> order) {
+        this.order = order;
     }
 }

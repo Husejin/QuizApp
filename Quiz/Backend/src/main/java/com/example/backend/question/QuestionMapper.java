@@ -20,14 +20,14 @@ public class QuestionMapper {
             Integer maxTime = results.getInt(4);
             Integer value = results.getInt(5);
             Integer quizId = results.getInt(6);
-            Integer orderNumber = results.getInt(7);
+
             question.setId(id);
             question.setQuestionText(questionText);
             question.setAnswers(Arrays.stream(answers).toList());
             question.setMaxTime(maxTime);
             question.setValue(value);
             question.setQuizId(quizId);
-            question.setOrderNumber(orderNumber);
+
         }
         return question;
     }

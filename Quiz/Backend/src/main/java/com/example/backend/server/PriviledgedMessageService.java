@@ -1,8 +1,12 @@
 package com.example.backend.server;
 
+import com.example.backend.question.QuestionEntity;
+import com.example.backend.quiz.QuizEntity;
+import com.example.backend.quiz.QuizzesService;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.websocket.Session;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +39,25 @@ public class PriviledgedMessageService {
                     message.setResponseState(ResponseState.FAILURE);
                     return message;
                 }
-                currentQuiz.setCurrentQuestion(currentQuiz.getCurrentQuestion() + 1);
-                message.setResponseState(ResponseState.SUCCESS);
+                try {
+                    QuizEntity currentQuizEntity = QuizzesService.getQuizById(currentQuiz.getQuizId());
+                    currentQuiz.setCurrentQuestion(currentQuiz.getCurrentQuestion() + 1);
+                    if (currentQuizEntity != null) {
+                        List<QuestionEntity> questions = currentQuizEntity.getQuestions();
+                        int nextQuestionId = currentQuizEntity.getOrder().get(currentQuiz.getCurrentQuestion() - 1);
+                        QuestionEntity nextQuestion = questions.stream().filter(questionEntity -> questionEntity.getId() == nextQuestionId).findFirst().orElse(null);
+                        if (nextQuestion != null) {
+                            message.setQuestion(nextQuestion);
+                            message.setMessageType(MessageType.NEXT_QUESTION);
+                            message.setResponseState(ResponseState.SUCCESS);
+                        } else
+                            message.setResponseState(ResponseState.FAILURE);
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
         return message;
