@@ -24,7 +24,6 @@ CREATE TABLE `question`
     `maxTime`      INT  DEFAULT 0,
     `value`        INT  DEFAULT 0,
     `quizID`       INT  DEFAULT 0,
-    FOREIGN KEY (`quizID`) REFERENCES quiz (id),
     PRIMARY KEY (`id`)
 );
 
