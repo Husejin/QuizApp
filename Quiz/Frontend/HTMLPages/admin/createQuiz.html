@@ -1,91 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CREATE QUIZ</title>
-  <meta charset="utf-8">
+    <title>CREATE QUIZ</title>
+    <meta charset="utf-8">
 
-  <!-- Font Awesome for icons-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- Font Awesome for icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-  <script src="https://kit.fontawesome.com/d0a998c845.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/d0a998c845.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 
-  <!-- Material Design Lite -->
-  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <!-- Material Design icon font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <!-- CSS -->
-   <link rel="stylesheet" href="../../Resources/style/admin.css">
-  <link rel="icon" href="../resources/images/loginIcon.png">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../Resources/style/admin.css">
+    <link rel="icon" href="../resources/images/loginIcon.png">
 </head>
 <body>
 
 <!-- HEADER -->
 <div class="header">
-  <nav>
-    <a href="#">
-      <span>Create Quiz</span>
-    </a>
-  </nav>
+    <nav>
+        <a href="#">
+            <span>Create Quiz</span>
+        </a>
+    </nav>
 </div>
 
 <div class="box">
 
-  <div class="info">
-    <div class="quizInfo">
-      <div class="title">
-        <span>QUIZ INFORMATIONS</span>
-      </div>
-      <div>
-        <input type="text" id="quizTitle">
-        <label>Quiz Title</label>
-      </div>
-        <div>
-        <input type="text" id="quizImageURL">
-        <label>Image URL</label>
-      </div>
-        <div>
-        <input type="file"id="image">
-        <img alt="your image" />
-        <label>Image</label>
-      </div>
+    <div class="info">
+        <div class="quizInfo">
+            <div class="title">
+                <span>QUIZ INFORMATIONS</span>
+            </div>
+            <div>
+                <input type="text" id="quizTitle">
+                <label>Quiz Title</label>
+            </div>
+            <div>
+                <input type="file" id="imageInput" accept="image/png, image/jpeg">
+                <img alt="" id="image" src=""/>
+            </div>
+        </div>
+
+        <div class="questionInfo" id="questionsDiv">
+            <div class="title">
+                <span>QUESTIONS</span>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        id="addQuestionButton">
+                    Add question
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="questionInfo">
-      <div class="title">
-        <span>QUESTIONS</span>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-          Add question
+    <div class="divider"></div>
+
+    <div class="button">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="createButton">
+            Create
         </button>
-      </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Cancel
+        </button>
     </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="button">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-      Create
-    </button>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Cancel
-    </button>
-  </div>
 
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <nav>
-    <i class="fa-solid fa-question"></i>
-    <span>Husejin & Maid</span>
-  </nav>
+    <nav>
+        <i class="fa-solid fa-question"></i>
+        <span>Husejin & Maid</span>
+    </nav>
 
 </div>
 
 
 </body>
+<script type="module" src="../../js/pageHandlers/createQuizHandler.js"></script>

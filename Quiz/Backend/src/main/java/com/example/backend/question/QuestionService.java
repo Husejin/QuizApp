@@ -35,7 +35,7 @@ public class QuestionService {
 
     }
 
-    public static void createQuestion(QuestionEntity questionEntity) {
+    public static int createQuestion(QuestionEntity questionEntity) {
         try {
             connection = DBConnector.getConnection();
             Gson gson = new Gson();
@@ -45,12 +45,21 @@ public class QuestionService {
             updateQuestionQuery.setString(2, gson.toJsonTree(questionEntity.getAnswers()).toString());
             updateQuestionQuery.setInt(3, questionEntity.getMaxTime());
             updateQuestionQuery.setInt(4, questionEntity.getValue());
-            updateQuestionQuery.setInt(5, questionEntity.getQuizId());
+            if (questionEntity.getQuizId() != null)
+                updateQuestionQuery.setInt(5, questionEntity.getQuizId());
+            else
+                updateQuestionQuery.setNull(5,java.sql.Types.NULL);
             updateQuestionQuery.executeUpdate();
+            String getLastId = "SELECT @@IDENTITY";
+            ResultSet resultSet = connection.prepareStatement(getLastId).executeQuery();
+            resultSet.next();
+            Integer lastIndex = resultSet.getInt(1);
             connection.close();
+            return lastIndex;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public static void deleteQuestion(QuestionEntity questionEntity) {

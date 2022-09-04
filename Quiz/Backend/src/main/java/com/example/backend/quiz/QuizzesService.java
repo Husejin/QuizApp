@@ -55,6 +55,10 @@ public class QuizzesService {
 
     public static void deleteQuiz(Integer quizId) throws SQLException {
         connection = DBConnector.getConnection();
+        String deleteQuestionsByQuizId = "DELETE FROM question WHERE quizID=?";
+        PreparedStatement deleteQuestionByQuizIdQuery = connection.prepareStatement(deleteQuestionsByQuizId);
+        deleteQuestionByQuizIdQuery.setInt(1, quizId);
+        deleteQuestionByQuizIdQuery.executeUpdate();
         String deleteQuizByIdString = "DELETE FROM quiz WHERE id=?";
         PreparedStatement deleteQuizById = connection.prepareStatement(deleteQuizByIdString);
         deleteQuizById.setInt(1, quizId);
@@ -84,13 +88,26 @@ public class QuizzesService {
     public static QuizEntity createQuiz(QuizEntity quizEntity) throws SQLException {
         connection = DBConnector.getConnection();
         String createQuizString = "INSERT INTO quiz VALUES( null,?,?,?);";
-        //List<Integer> order= quizEntity.getQuestions().stream().map(QuestionEntity::getId).toList();
         PreparedStatement createQuizQuery = connection.prepareStatement(createQuizString);
         createQuizQuery.setString(1, quizEntity.getTitle());
         createQuizQuery.setBytes(2, Base64.getDecoder().decode(quizEntity.getAlternateImage()));
+        createQuizQuery.setString(3, "[]");
         createQuizQuery.executeUpdate();
-        quizEntity.getQuestions().forEach(QuestionService::createQuestion);
+        String getLastId = "SELECT @@IDENTITY";
+        ResultSet resultSet = connection.prepareStatement(getLastId).executeQuery();
+        resultSet.next();
+        Integer lastIndex = resultSet.getInt(1);
         connection.close();
+        quizEntity.getQuestions().forEach(questionEntity -> questionEntity.setQuizId(lastIndex));
+        List<Integer> addedIndexes = quizEntity.getQuestions().stream().map(QuestionService::createQuestion).toList();
+        connection = DBConnector.getConnection();
+        String updateOrderOfQuestions = "UPDATE quiz SET `order`=? WHERE id=?";
+        PreparedStatement updateOrder = connection.prepareStatement(updateOrderOfQuestions);
+        updateOrder.setString(1, String.valueOf(addedIndexes));
+        updateOrder.setInt(2, lastIndex);
+        updateOrder.executeUpdate();
+        connection.close();
+
         return quizEntity;
     }
 
