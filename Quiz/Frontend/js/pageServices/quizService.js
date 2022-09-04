@@ -34,6 +34,9 @@ export function generateSingleQuizDiv(quiz) {
     let updateButton = document.createElement('button');
     updateButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
     updateButton.innerHTML = 'Update'
+    updateButton.onclick = () => {
+        location.href = `./updateQuiz.html?id=${quiz.id}`;
+    }
 
     let sp2Div2 = document.createElement('div');
     sp2Div2.className = 'sp2';
@@ -41,6 +44,14 @@ export function generateSingleQuizDiv(quiz) {
     let deleteButton = document.createElement('button');
     deleteButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
     deleteButton.innerHTML = 'Delete'
+    deleteButton.onclick = () => {
+        if (confirm('Are you sure you want to delete a quiz?')) {
+            $.post('http://localhost:8080/Backend_war_exploded/delete_quiz', {id: quiz.id},
+                () => {
+                    alert('Successfully deleted quiz!');
+                })
+        }
+    }
 
     quizImageDiv.appendChild(image);
     sp1Div.appendChild(quizImageDiv);

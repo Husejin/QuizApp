@@ -30,8 +30,9 @@ public class QuizMapper {
             AnswerEntity[] answers = gson.fromJson(answersString, AnswerEntity[].class);
             int maxtime = queryResults.getInt(6);
             int value = queryResults.getInt(7);
-            List<Integer> order = gson.fromJson(queryResults.getString(8),List.class);
+            List<Integer> order = gson.fromJson(queryResults.getString(8), List.class);
             int questionId = queryResults.getInt(9);
+
             List<QuizEntity> firstQuizCollected = quizEntities.stream().filter(q -> q.getId() == quizId).toList();
             QuestionEntity questionEntity = new QuestionEntity();
             questionEntity.setQuestionText(questionText);
@@ -39,8 +40,8 @@ public class QuizMapper {
             questionEntity.setMaxTime(maxtime);
             questionEntity.setAnswers(Arrays.stream(answers).toList());
             questionEntity.setId(questionId);
-            if(firstQuizCollected.isEmpty())
-            {
+            questionEntity.setQuizId(quizId);
+            if (firstQuizCollected.isEmpty()) {
                 QuizEntity quizEntity = new QuizEntity();
                 quizEntity.setId(quizId);
                 quizEntity.setAlternateImage(image);
@@ -50,15 +51,12 @@ public class QuizMapper {
                 quizEntity.setOrder(order);
                 quizEntities.add(quizEntity);
 
-            }
-            else {
+            } else {
                 firstQuizCollected.get(0).getQuestions().add(questionEntity);
             }
         }
-        return  quizEntities;
+        return quizEntities;
     }
-
-
 
 
 }

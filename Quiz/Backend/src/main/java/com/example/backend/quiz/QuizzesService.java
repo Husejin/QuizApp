@@ -1,13 +1,16 @@
 package com.example.backend.quiz;
 
 import com.example.backend.DBConnector;
+import com.example.backend.question.QuestionEntity;
 import com.example.backend.question.QuestionService;
 import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class QuizzesService {
@@ -64,19 +67,27 @@ public class QuizzesService {
         String updateQuizString = "UPDATE quiz SET title = ?,image=? WHERE id=?";
         PreparedStatement updateQuizQuery = connection.prepareStatement(updateQuizString);
         updateQuizQuery.setString(1, quizEntity.getTitle());
-        updateQuizQuery.setString(2, quizEntity.getAlternateImage());
+        updateQuizQuery.setBytes(2, Base64.getDecoder().decode(quizEntity.getAlternateImage()));
         updateQuizQuery.setInt(3, quizEntity.getId());
-        quizEntity.getQuestions().forEach(QuestionService::updateQuestion);
+        List<QuestionEntity> compareQuestions = QuestionService.getQuestionsByQuizId(quizEntity.getId());
+        List<QuestionEntity> deletedQuestions = compareQuestions.stream().filter(questionEntity -> !quizEntity.getQuestions().contains(questionEntity)).toList();
+
+        List<QuestionEntity> newQuestions = quizEntity.getQuestions().stream().filter(questionEntity -> questionEntity.getId() == null).toList();
+        newQuestions.forEach(QuestionService::createQuestion);
+        deletedQuestions.forEach(QuestionService::deleteQuestion);
+        quizEntity.getQuestions().stream().filter(questionEntity -> questionEntity.getId() != null).forEach(QuestionService::updateQuestion);
+        updateQuizQuery.executeUpdate();
         connection.close();
         return quizEntity;
     }
 
     public static QuizEntity createQuiz(QuizEntity quizEntity) throws SQLException {
         connection = DBConnector.getConnection();
-        String createQuizString = "INSERT INTO quiz VALUES( null,?,?);";
+        String createQuizString = "INSERT INTO quiz VALUES( null,?,?,?);";
+        //List<Integer> order= quizEntity.getQuestions().stream().map(QuestionEntity::getId).toList();
         PreparedStatement createQuizQuery = connection.prepareStatement(createQuizString);
         createQuizQuery.setString(1, quizEntity.getTitle());
-        createQuizQuery.setString(2, quizEntity.getAlternateImage());
+        createQuizQuery.setBytes(2, Base64.getDecoder().decode(quizEntity.getAlternateImage()));
         createQuizQuery.executeUpdate();
         quizEntity.getQuestions().forEach(QuestionService::createQuestion);
         connection.close();

@@ -3,6 +3,7 @@ package com.example.backend.question;
 import com.example.backend.quiz.AnswerEntity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class QuestionEntity {
 
@@ -62,5 +63,16 @@ public class QuestionEntity {
         this.quizId = quizId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof QuestionEntity)) return false;
+        QuestionEntity question = (QuestionEntity) o;
+        return Objects.equals(getId(), question.getId()) && Objects.equals(getQuestionText(), question.getQuestionText()) && Objects.equals(getAnswers(), question.getAnswers()) && Objects.equals(getMaxTime(), question.getMaxTime()) && Objects.equals(getValue(), question.getValue()) && Objects.equals(getQuizId(), question.getQuizId());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getQuestionText(), getAnswers(), getMaxTime(), getValue(), getQuizId());
+    }
 }
