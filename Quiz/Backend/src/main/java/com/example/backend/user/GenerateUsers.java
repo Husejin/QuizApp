@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
-@WebServlet(value = "/getUsers")
+@WebServlet(value = "/all_users")
 public class GenerateUsers extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
