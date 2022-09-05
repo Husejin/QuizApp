@@ -1,0 +1,155 @@
+/* importing google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: max-content;
+}
+
+html
+{
+    height: 100%;
+}
+
+body{
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+}
+
+
+
+.logoImage
+{
+    width: 300px;
+    height: 300px;
+    margin-left: 42.5%;
+    margin-top: 1.5%;
+}
+
+.inputBox
+{
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    width: 400px;
+    height: 330px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #40474B;
+}
+
+
+.inputBox .info-title{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left:30%;
+    padding: 10px 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 35px;
+    font-weight: 600;
+    color: #993A9F;
+}
+.inputBox .info-title2{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left:25%;
+    padding: 10px 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 35px;
+    font-weight: 600;
+    color: #993A9F;
+}
+
+.inputBox .buttons{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+}
+
+.inputBox .buttons button{
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #993A9F;
+    transition: all 0.3s ease;
+}
+.inputBox .info-list{
+    padding: 20px 70px;
+}
+
+.buttons button.restart{
+    color: #000000;
+    background-color: #993A9F;
+}
+
+.buttons button.restart:hover{
+    background-color: #e7139a;
+    border:  #e7139a;
+}
+
+.buttons button.quit{
+    color: #000000;
+    background-color: #993A9F;
+}
+
+.buttons button.quit:hover{
+    background-color: #e7139a;
+    border:  #e7139a;
+}
+
+.userBox
+{
+    position: relative;
+}
+.userBox input
+{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid  #0033CCFF;
+    outline: none;
+    background: transparent;
+}
+.userBox label
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.userBox input:focus ~ label,
+.userBox input:valid ~ label
+{
+    top: -20px;
+    left: 0;
+    color: #993A9F;
+    font-size: 12px;
+}
+
+.footer
+{
+   position: absolute;
+bottom: 0;
+    left: 46%;
+}

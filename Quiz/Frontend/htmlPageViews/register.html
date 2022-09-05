@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>REGISTER</title>
+  <title>Ligma Register</title>
   <meta charset="utf-8">
 
   <!-- Font Awesome for icons-->
@@ -13,42 +13,34 @@
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="../../style/css.css"> -->
   <link rel="icon" href="../resources/images/loginIcon.png">
+  <link rel="stylesheet" href="../Resources/style/loginRegister.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <nav>
-    <a href="#">
-      <i class="fa-solid fa-question"></i>
-      <span>Quiz</span>
-    </a>
-  </nav>
-</div>
+<img src="../resources/images/LogoLigma2.png" class="logoImage"></img>
 
-
-
-<div>
-  <h2>Register</h2>
-
-  <div>
-    <input type="text" id="username">
-    <label>Username</label>
+<div class="inputBox">
+  <h2 class="info-title2">Register</h2>
+  <div class="info-list">
+    <div class="userBox">
+      <input type="text" id="username" required="" autocomplete="off">
+      <label>Username</label>
+    </div>
+    <div class="userBox">
+      <input type="password" id="password"  required="" autocomplete="off">
+      <label>Password</label>
+    </div >
   </div>
-  <div>
-    <input type="password" id="password">
-    <label>Password</label>
+  <div class="buttons">
+    <button class="quit"  id="loginButton">Register</button>
   </div>
-  <input type="button" value="Register" id="registerButton">
 </div>
 
 <!-- FOOTER -->
-<div class="footer" style="position: absolute; bottom: 0">
+<div class="footer">
   <nav>
-      <i class="fa-solid fa-question"></i>
-      <span>Husejin & Maid</span>
+    <span>Husejin & Maid</span>
   </nav>
-
 </div>
 
 

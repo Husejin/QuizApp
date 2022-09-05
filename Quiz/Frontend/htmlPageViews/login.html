@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>LOGIN</title>
+  <title>Ligma Login</title>
   <meta charset="utf-8">
 
   <!-- Font Awesome for icons-->
@@ -13,41 +13,35 @@
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="../../style/css.css"> -->
   <link rel="icon" href="../resources/images/loginIcon.png">
+  <link rel="stylesheet" href="../Resources/style/loginRegister.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <nav>
-    <a href="#">
-      <i class="fa-solid fa-question"></i>
-      <span>Quiz</span>
-    </a>
-  </nav>
-</div>
+<img src="../resources/images/LogoLigma2.png" class="logoImage"></img>
 
-
-
-<div>
-  <h2>Login</h2>
-
-    <div>
-      <input type="text" id="username">
-      <label>Username</label>
-    </div>
-    <div>
-      <input type="password" id="password">
-      <label>Password</label>
-    </div>
-    <input type="button" value="Sign In" id="loginButton">
+<div class="inputBox">
+  <h2 class="info-title">Login</h2>
+  <div class="info-list">
+        <div class="userBox">
+          <input type="text" id="username" required="" autocomplete="off">
+          <label>Username</label>
+        </div>
+        <div class="userBox">
+          <input type="password" id="password"  required="" autocomplete="off">
+          <label>Password</label>
+        </div >
+  </div>
+  <div class="buttons">
+    <button class="quit"  id="loginButton">Sign In</button>
+  </div>
 </div>
 
 <!-- FOOTER -->
-<div class="footer" style="position: absolute; bottom: 0">
-  <nav>
-      <i class="fa-solid fa-question"></i>
-      <span>Husejin & Maid</span>
-  </nav>
+<div class="footer">
+    <nav>
+        <span>Husejin & Maid</span>
+    </nav>
+</div>
 
 </div>
 
