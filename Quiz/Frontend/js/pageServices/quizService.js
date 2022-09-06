@@ -24,15 +24,21 @@ export function generateSingleQuizDiv(quiz) {
     let sp2Div = document.createElement('div');
     sp2Div.className = 'sp2';
 
+    let divButton1 = document.createElement('div');
+    divButton1.className = "buttons";
+
     let startButton = document.createElement('button');
-    startButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
+    startButton.className = 'butt';
     startButton.innerHTML = 'Start'
 
     let sp2Div1 = document.createElement('div');
     sp2Div1.className = 'sp2';
 
+    let divButton2 = document.createElement('div');
+    divButton2.className = "buttons";
+
     let updateButton = document.createElement('button');
-    updateButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
+    updateButton.className = 'butt';
     updateButton.innerHTML = 'Update'
     updateButton.onclick = () => {
         location.href = `./updateQuiz.html?id=${quiz.id}`;
@@ -41,8 +47,11 @@ export function generateSingleQuizDiv(quiz) {
     let sp2Div2 = document.createElement('div');
     sp2Div2.className = 'sp2';
 
+    let divButton3 = document.createElement('div');
+    divButton3.className = "buttons";
+
     let deleteButton = document.createElement('button');
-    deleteButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
+    deleteButton.className = 'butt';
     deleteButton.innerHTML = 'Delete'
     deleteButton.onclick = () => {
         if (confirm('Are you sure you want to delete a quiz?')) {
@@ -58,13 +67,16 @@ export function generateSingleQuizDiv(quiz) {
     sp1Div.appendChild(quizTitleDiv);
     singleQuizDiv.appendChild(sp1Div);
 
-    sp2Div.appendChild(startButton);
+    divButton1.appendChild(startButton);
+    sp2Div.appendChild(divButton1);
     singleQuizDiv.appendChild(sp2Div);
 
-    sp2Div1.appendChild(updateButton);
+    divButton2.appendChild(updateButton);
+    sp2Div1.appendChild(divButton2);
     singleQuizDiv.appendChild(sp2Div1);
 
-    sp2Div2.appendChild(deleteButton);
+    divButton3.appendChild(deleteButton);
+    sp2Div2.appendChild(divButton3);
     singleQuizDiv.appendChild(sp2Div2);
 
     return singleQuizDiv;
