@@ -2,8 +2,6 @@ import {getCookie} from "../utilityServices/cookieService.js";
 
 
 const params = new URLSearchParams(window.location.search);
-let connected = false;
-
 
 
 let user = initUser();
@@ -52,8 +50,39 @@ function startQuiz(hostSocket, user) {
                 case "PLAYER_COUNT":
                     playerCountDiv.innerHTML = message.playerCount !== undefined ? message.playerCount : "0";
                     break;
+                case "LEADERBOARD":
+                    generateLeaderBoard(message.leaderBoard);
+                    break;
             }
         };
     }
+
+}
+
+function generateLeaderBoard(leaderBoard) {
+    let playerCountDiv = document.getElementById('numberOfPeople');
+    let quizPinDiv = document.getElementById('quizPin');
+    playerCountDiv.innerHTML = '';
+    quizPinDiv.innerHTML = '';
+
+    let leaderBoardDiv = document.createElement('div');
+    leaderBoard.forEach(leaderBoardEntry => {
+        let div = document.createElement('div');
+        div.innerHTML = `${leaderBoardEntry.username} : ${leaderBoardEntry.points}`
+        leaderBoardDiv.appendChild(div);
+    })
+    quizPinDiv.appendChild(leaderBoardDiv);
+
+    function generateCSV() {
+        const fileName = 'download';
+        const exportType = 'csv';
+
+    }
+
+    let exportButton = document.createElement('button');
+    exportButton.innerHTML = "Export";
+    exportButton.onclick = generateCSV;
+    quizPinDiv.appendChild(exportButton);
+
 
 }

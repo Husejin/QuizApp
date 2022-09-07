@@ -6,16 +6,17 @@ testSocket.onmessage = function (event) {
     let message = JSON.parse(event.data);
     switch (message.messageType) {
         case "LEADERBOARD":
-            setCookie('question','');
-            setCookie('quizPin','');
-            setCookie('userName','');
+            setCookie('question', '');
+            setCookie('quizPin', '');
+            setCookie('userName', '');
+            generateLeaderBoard(message.leaderBoard);
             break
         case "NEXT_QUESTION":
             setCookie('question', JSON.stringify(message.question));
             generateQuestionForm(message.question);
             break
         case "ANSWER":
-            setCookie('question','');
+            setCookie('question', '');
             generateWaitingForm();
             break
         case "PLAYER_COUNT":
@@ -46,7 +47,7 @@ function joinQuizListener() {
     let userNameField = document.getElementById('userName');
     let userName = userNameField.value;
     if (userName !== '') {
-        testSocket = joinQuiz(userName);
+      joinQuiz(userName);
     } else {
         alert("Plaese enter a username first")
     }
@@ -196,5 +197,16 @@ function generateQuestionForm(question) {
     panel.appendChild(answer4Label);
     panel.appendChild(nextQuestionButton);
 
+}
 
+function generateLeaderBoard(leaderBoard) {
+    let panel = document.getElementById('mainPanel');
+    panel.innerHTML = '';
+    let leaderBoardDiv = document.createElement('div');
+    leaderBoard.forEach(leaderBoardEntry => {
+        let div = document.createElement('div');
+        div.innerHTML = `${leaderBoardEntry.username} : ${leaderBoardEntry.points}`
+        leaderBoardDiv.appendChild(div);
+    })
+    panel.appendChild(leaderBoardDiv);
 }
