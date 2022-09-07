@@ -8,5 +8,6 @@ export class Message {
     responseState;
     quizId;
     playerCount;
+    leaderBoard;
 }
 

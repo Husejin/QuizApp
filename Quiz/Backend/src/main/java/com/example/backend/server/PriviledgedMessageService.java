@@ -48,10 +48,22 @@ public class PriviledgedMessageService {
                     QuizEntity currentQuizEntity = QuizzesService.getQuizById(currentQuiz.getQuizId());
                     currentQuiz.setCurrentQuestion(currentQuiz.getCurrentQuestion() + 1);
                     if (currentQuizEntity != null) {
+                        List<String> userNamesInCurrentQuiz = currentQuiz.getLeaderBoard().stream().map(LeaderBoardEntry::getUsername).toList();
+                        List<Session> currentPlayerSessions = mappedSessions.entrySet().stream().filter(stringSessionEntry ->
+                                userNamesInCurrentQuiz.contains(stringSessionEntry.getKey())
+                        ).map(Map.Entry::getValue).toList();
                         List<QuestionEntity> questions = currentQuizEntity.getQuestions();
-                        if (currentQuiz.getCurrentQuestion() > currentQuizEntity.getOrder().size()) {
+                        if (currentQuiz.getCurrentQuestion() >= currentQuizEntity.getOrder().size()) {
                             message.setMessageType(MessageType.LEADERBOARD);
                             message.setResponseState(ResponseState.SUCCESS);
+                            message.setLeaderBoard(currentQuiz.getLeaderBoard());
+                            currentPlayerSessions.forEach(playerSession -> {
+                                try {
+                                    playerSession.getBasicRemote().sendObject(message);
+                                } catch (IOException | EncodeException e) {
+                                    e.printStackTrace();
+                                }
+                            });
                             return message;
                         }
                         Double nextQuestionId = currentQuizEntity.getOrder().get(currentQuiz.getCurrentQuestion());
@@ -60,10 +72,7 @@ public class PriviledgedMessageService {
                             message.setQuestion(nextQuestion);
                             message.setMessageType(MessageType.NEXT_QUESTION);
                             message.setResponseState(ResponseState.SUCCESS);
-                            List<String> userNamesInCurrentQuiz = currentQuiz.getLeaderBoard().stream().map(LeaderBoardEntry::getUsername).toList();
-                            List<Session> currentPlayerSessions = mappedSessions.entrySet().stream().filter(stringSessionEntry ->
-                                    userNamesInCurrentQuiz.contains(stringSessionEntry.getKey())
-                            ).map(Map.Entry::getValue).toList();
+
                             currentPlayerSessions.forEach(playerSession -> {
                                 try {
                                     playerSession.getBasicRemote().sendObject(message);

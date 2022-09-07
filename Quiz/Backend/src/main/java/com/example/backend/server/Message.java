@@ -2,6 +2,8 @@ package com.example.backend.server;
 
 import com.example.backend.question.QuestionEntity;
 
+import java.util.List;
+
 import static com.example.backend.user.UserRoles.UserRole;
 
 public class Message {
@@ -14,6 +16,7 @@ public class Message {
     private ResponseState responseState;
     private Integer quizId;
     private Integer playerCount;
+    private List<LeaderBoardEntry> leaderBoard;
 
     public Integer getQuizId() {
         return quizId;
@@ -87,6 +90,13 @@ public class Message {
         this.responseState = responseState;
     }
 
+    public List<LeaderBoardEntry> getLeaderBoard() {
+        return leaderBoard;
+    }
+
+    public void setLeaderBoard(List<LeaderBoardEntry> leaderBoard) {
+        this.leaderBoard = leaderBoard;
+    }
 
     @Override
     public String toString() {

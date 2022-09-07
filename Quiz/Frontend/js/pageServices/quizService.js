@@ -88,13 +88,3 @@ function startQuiz(quizId) {
     location.href = `./activeQuiz.html?id=${quizId}`;
 
 }
-
-function startQuiz(quizId) {
-    location.href = `./activeQuiz.html?id=${quizId}`;
-
-}
-
-function startQuiz(quizId) {
-    location.href = `./activeQuiz.html?id=${quizId}`;
-
-}
