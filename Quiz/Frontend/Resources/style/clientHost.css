@@ -28,23 +28,24 @@ body{
 #mainPanel
 {
     position: absolute;
-    top: 60%;
+    top: 63%;
     left: 50%;
-    width: 350px;
-    height: 200px;
+    width: 450px;
+    height: 300px;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-image: linear-gradient(to bottom right, #343a40, #3e4552, #768191);
+    display: flex;
+    flex-direction: column;
 }
 
 #mainPanel .info-title{
-    height: 40px;.
-    width: 100%;
+    height: 15%;
     display: flex;
-    align-items: center;
-    margin-left:24%;
+    justify-content: center;
     padding: 0px 30px;
+    margin-top: 15px;
     border-radius: 5px 5px 0 0;
     font-size: 30px;
     font-weight: 600;
@@ -52,12 +53,11 @@ body{
 }
 
 #mainPanel .info-title2{
-    height: 40px;
-    width: 100%;
+    height: 15%;
     display: flex;
-    align-items: center;
-    margin-left:19.5%;
+    justify-content: center;
     padding: 0px 30px;
+    margin-top: 15px;
     border-radius: 5px 5px 0 0;
     font-size: 30px;
     font-weight: 600;
@@ -65,7 +65,7 @@ body{
 }
 
 #mainPanel .buttons{
-    height: 30px;
+    height: 25%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,17 +97,21 @@ body{
 
 .userBox
 {
-    position: relative;
-    top: 10px;
+    height: 60%;
+    display: flex;
+    justify-content: center;
 }
 .userBox input
 {
-    width: 85%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     padding: 10px 0;
     font-size: 16px;
     color: #000000;
     margin-left: 23px;
-    margin-bottom: 40px;
+    margin-right: 23px;
+    margin-top: 65px;
     border: none;
     border-bottom: 1px solid  #0033CCFF;
     outline: none;
@@ -116,22 +120,22 @@ body{
 .userBox label
 {
     position: absolute;
-    top: -10px;
     left: 25px;
+    margin-top: 55px;
     padding: 25px 0;
     font-size: 16px;
     color: #000000;
     pointer-events: none;
-    transition: .5s;
+    transition: 1.5s;
 }
 
 .userBox input:focus ~ label,
 .userBox input:valid ~ label
 {
-    top: -30px;
+    top: -10px;
     left: 28px;
     color: #993A9F;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .header
