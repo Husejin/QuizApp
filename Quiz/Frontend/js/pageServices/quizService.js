@@ -1,4 +1,3 @@
-import {getCookie} from "../utilityServices/cookieService.js";
 
 export function generateSingleQuizDiv(quiz) {
     let singleQuizDiv = document.createElement('div');
