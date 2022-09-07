@@ -1,6 +1,7 @@
 import {Answer} from "../../Resources/QuizUtilities/Answer.js";
 import {Question} from "../../Resources/QuizUtilities/Question.js";
 import {initAddQuestionButton} from "../pageServices/questionService.js";
+import {eraseCookie} from "./cookieService.js";
 const params = new URLSearchParams(window.location.search);
 
 export function initializeImageHandler() {
@@ -46,4 +47,29 @@ export function init() {
     let questions = document.getElementById('questionsDiv');
     initAddQuestionButton(questions);
     initializeImageHandler();
+}
+
+export function initCancelButton() {
+    let cancelButton = document.getElementById('cancelButton');
+    cancelButton.onclick = ()=>{location.href="./allQuizzes.html"};
+}
+
+export function initBackButtonAdmin() {
+    let backButton = document.getElementById('backButton');
+    backButton.onclick=()=>{
+        eraseCookie('userName');
+        eraseCookie('quizPin');
+        eraseCookie('question');
+        location.href='./allQuizzes.html'
+    }
+}
+
+export function initBackButtonClient() {
+    let backButton = document.getElementById('backButton');
+    backButton.onclick=()=>{
+        eraseCookie('userName');
+        eraseCookie('quizPin');
+        eraseCookie('question');
+        location.href='./client.html'
+    }
 }

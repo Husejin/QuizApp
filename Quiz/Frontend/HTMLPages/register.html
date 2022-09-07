@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Ligma Login</title>
+  <title>Ligma Register</title>
   <meta charset="utf-8">
 
   <!-- Font Awesome for icons-->
@@ -18,34 +18,37 @@
 <body>
 
 <div class="header">
-    <img src="../resources/images/LogoLigma2.png" class="logoImage"></img>
+  <img src="../resources/images/LogoLigma2.png" class="logoImage"></img>
 </div>
 
 <div class="inputBox">
-  <h2 class="info-title">Login</h2>
+  <h2 class="info-title2">Register</h2>
   <div class="info-list">
-        <div class="userBox">
-          <input type="text" id="username" required="" autocomplete="off">
-          <label>Username</label>
-        </div>
-        <div class="userBox">
-          <input type="password" id="password"  required="" autocomplete="off">
-          <label>Password</label>
-        </div >
+    <div class="userBox">
+      <input type="text" id="username" required="" autocomplete="off">
+      <label>Username</label>
+    </div>
+    <div class="userBox">
+      <input type="password" id="password"  required="" autocomplete="off">
+      <label>Password</label>
+    </div >
   </div>
   <div class="buttons">
-    <button class="quit"  id="loginButton">Sign In</button>
+    <button class="quit"  id="registerButton">Register</button>
   </div>
 </div>
-
+<div class="button2">
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="backButton">
+    BACK
+  </button>
+</div>
 <!-- FOOTER -->
 <div class="footer">
-    <nav>
-        <span>Husejin & Maid</span>
-    </nav>
-</div>
-
+  <nav>
+    <span>Husejin & Maid</span>
+  </nav>
 </div>
 
 
 </body>
+<script type="module" src="../js/pageHandlers/registerPageHandler.js"></script>

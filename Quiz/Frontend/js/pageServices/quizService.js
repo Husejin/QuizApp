@@ -1,4 +1,3 @@
-
 export function generateSingleQuizDiv(quiz) {
     let singleQuizDiv = document.createElement('div');
     singleQuizDiv.className = 'oneQuiz';
@@ -15,7 +14,7 @@ export function generateSingleQuizDiv(quiz) {
     image.className = 'imageStyle';
 
 
-    image.src = quiz.alternateImage;
+    image.src = `data:image/png;base64,${quiz.alternateImage}`;
     let quizTitleDiv = document.createElement('div');
 
 
@@ -31,7 +30,7 @@ export function generateSingleQuizDiv(quiz) {
     let startButton = document.createElement('button');
     startButton.className = 'butt';
     startButton.innerHTML = 'Start'
-    startButton.onclick = ()=>startQuiz(quiz.id);
+    startButton.onclick = () => startQuiz(quiz.id);
     let sp2Div1 = document.createElement('div');
     sp2Div1.className = 'sp2';
 
@@ -59,6 +58,7 @@ export function generateSingleQuizDiv(quiz) {
             $.post('http://localhost:8080/Backend_war_exploded/delete_quiz', {id: quiz.id},
                 () => {
                     alert('Successfully deleted quiz!');
+                    location.reload();
                 })
         }
     }

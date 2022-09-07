@@ -1,3 +1,5 @@
+import {initBackButtonClient} from "../utilityServices/commonService.js";
+
 $.get('http://localhost:8080/Backend_war_exploded/all_users', {limit: 100, offset: 0}, (data) => {
     let allUsers = JSON.parse(data);
     let allUsersDiv = document.getElementById('allUsers');
@@ -5,7 +7,7 @@ $.get('http://localhost:8080/Backend_war_exploded/all_users', {limit: 100, offse
         allUsersDiv.appendChild(generateOneUserDiv(user))
     })
 })
-
+initBackButtonClient();
 function generateOneUserDiv(user) {
     let oneUserDiv = document.createElement('div',);
     oneUserDiv.className = 'oneUser';
@@ -75,6 +77,7 @@ function generateOneUserDiv(user) {
         if (confirm('Are you sure you want to delete a user?')) {
             $.post('http://localhost:8080/Backend_war_exploded/delete_user', {userId: user.id}, () => {
                 alert('Successfully deleted user!');
+                location.reload();
             })
         }
     }

@@ -1,5 +1,5 @@
-import {getCookie, setCookie} from "../utilityServices/cookieService.js";
-
+import {eraseCookie, getCookie, setCookie} from "../utilityServices/cookieService.js";
+initLoginAndRegistrationButtons();
 let testSocket = new WebSocket("ws://localhost:8080/Backend_war_exploded/quiz_server");
 
 testSocket.onmessage = function (event) {
@@ -32,9 +32,9 @@ function generateWaitingForm() {
     panel.appendChild(waitingForQuestionDiv);
 }
 
-if (getCookie('quizPin') === null) {
+if (getCookie('quizPin') === null || getCookie('quizPin') === '') {
     generatePinForm();
-} else if (getCookie('userName') === null) {
+} else if (getCookie('userName') === null || getCookie('userName') === '') {
     generateUsernameForm();
 } else if (getCookie('question') === null || getCookie('question') === '') {
     generateWaitingForm();
@@ -47,7 +47,8 @@ function joinQuizListener() {
     let userNameField = document.getElementById('userName');
     let userName = userNameField.value;
     if (userName !== '') {
-      joinQuiz(userName);
+        joinQuiz(userName);
+        generateWaitingForm();
     } else {
         alert("Plaese enter a username first")
     }
@@ -183,6 +184,17 @@ function generateQuestionForm(question) {
         question.answers = answers;
         testSocket.send(`{userRole: 'PLAYER', quizPin: '${getCookie('quizPin')}', messageType: 'ANSWER', userName: '${getCookie('userName')}', question: ${JSON.stringify(question)}}`);
     }
+    clearInterval(getCookie('timer'));
+    eraseCookie('timer');
+    let timeRemainingDiv = document.createElement('div');
+    let questionDuration = setInterval(() => {
+        timeRemainingDiv.innerHTML = `${question.maxTime}`;
+        question.maxTime = question.maxTime - 1;
+        if (question.maxTime === -1) {
+            clearInterval(questionDuration);
+            submitAnswer();
+        }
+    },1000);
 
     nextQuestionButton.onclick = submitAnswer;
 
@@ -196,7 +208,7 @@ function generateQuestionForm(question) {
     panel.appendChild(answer4Button);
     panel.appendChild(answer4Label);
     panel.appendChild(nextQuestionButton);
-
+    panel.appendChild(timeRemainingDiv);
 }
 
 function generateLeaderBoard(leaderBoard) {
@@ -209,4 +221,11 @@ function generateLeaderBoard(leaderBoard) {
         leaderBoardDiv.appendChild(div);
     })
     panel.appendChild(leaderBoardDiv);
+}
+function initLoginAndRegistrationButtons() {
+    let loginButton = document.getElementById('loginButton');
+    let registerButton = document.getElementById('registerButton');
+    loginButton.onclick=()=>{location.href='./login.html'}
+    registerButton.onclick=()=>{location.href='./register.html'}
+
 }

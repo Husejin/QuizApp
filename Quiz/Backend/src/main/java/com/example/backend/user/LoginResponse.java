@@ -3,7 +3,7 @@ package com.example.backend.user;
 public class LoginResponse {
     String status;
     String role;
-
+    Integer userId;
 
     public String getStatus() {
         return status;
@@ -19,5 +19,13 @@ public class LoginResponse {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

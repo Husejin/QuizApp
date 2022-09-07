@@ -25,6 +25,7 @@ public class LoginUserService {
             String userRole = String.valueOf(UserRole.values()[userRoleIntValue]);
             loginResponse.setRole(userRole);
             loginResponse.setStatus("SUCCESS");
+            loginResponse.setUserId(matchingUsers.getInt(1));
         }
         return loginResponse;
     }
