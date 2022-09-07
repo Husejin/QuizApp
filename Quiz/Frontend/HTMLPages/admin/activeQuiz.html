@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ACTIVE QUIZ</title>
+    <title>Ligma Active Quiz</title>
     <meta charset="utf-8">
 
     <!-- Font Awesome for icons-->
@@ -19,44 +19,64 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../../Resources/style/admin.css">
-    <link rel="icon" href="../resources/images/loginIcon.png">
+    <link rel="icon" href="../../resources/images/loginIcon.png">
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
-    <nav>
-        <a href="#">
-            <span>Active Quiz</span>
-        </a>
-    </nav>
-</div>
-<div class="button2">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="nextQuestionButton">
-        NEXT QUESTION
-    </button>
-</div>
-<div class="button2">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="backButton">
-        BACK
-    </button>
+    <div class="head1">
+        <span>ACTIVE</span>
+    </div>
+    <div class="head1">
+        <img src="../../resources/images/LogoLigma2.png" class="logoImage2"></img>
+    </div>
+    <div class="head1">
+        <span>QUIZ</span>
+    </div>
 </div>
 
-<div id="quizPin"></div>
 
+<div class="middle">
 
-<div id="numberOfPeople"></div>
+    <div class = "mainPanel">
+        <div class="infoQuiz">
 
+            <div class="quizPin">
+                <label>Quiz pin</label>
+                <div id="quizPin"></div>
+            </div>
 
-<div id="timeRemaining"></div>
+            <div class="numberOfPeople">
+                <label>Number of participants</label>
+                <div id="numberOfPeople"></div>
+            </div>
+
+            <div class="timeRemaining">
+                <label>Remaining time</label>
+                <div id="timeRemaining"></div>
+            </div>
+
+        </div>
+        <div class="buttonsControl2">
+        <div class="sp2">
+            <div class="buttons">
+                <button class="butt2" id="nextQuestionButton">Next question</button>
+            </div>
+        </div>
+
+        <div class="sp2">
+            <div class="buttons">
+                <button class="butt2" id="backButton">Back</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
-    <nav>
-        <i class="fa-solid fa-question"></i>
         <span>Husejin & Maid</span>
-    </nav>
-
 </div>
 
 
