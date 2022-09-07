@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>UPDATE QUIZ</title>
+    <title>Ligma Update Quiz</title>
     <meta charset="utf-8">
 
     <!-- Font Awesome for icons-->
@@ -23,22 +23,25 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
-    <nav>
-        <a href="#">
-            <span>Update Quiz</span>
-        </a>
-    </nav>
+    <img src="../../resources/images/LogoLigma2.png" class="logoImage"></img>
 </div>
+
 
 <div class="box">
 
+    <div class="titles">
+        <div class="title">
+            <span>QUIZ INFORMATIONS</span>
+        </div>
+        <div class="title">
+            <span>QUESTIONS</span>
+        </div>
+    </div>
+
     <div class="info">
         <div class="quizInfo">
-            <div class="title">
-                <span>QUIZ INFORMATIONS</span>
-            </div>
+
             <div>
                 <input type="text" id="quizTitle">
                 <label>Quiz Title</label>
@@ -51,47 +54,21 @@
 
         <div class="questionInfo" id="questionsDiv">
             <div class="title">
-                <span>QUESTIONS</span>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                        id="addQuestionButton">
-                    Add question
-                </button>
-                <div class="oneQuestion">
-           <textarea rows="2" cols="40">
-              Question Text
-           </textarea>
-                    <div>
-                        <input type="number" name="Question Time">
-                        <label>Question Time</label>
-                        <input type="number" name="Question Value">
-                        <label>Question Value</label>
-                    </div>
-                </div>
-                <div class="oneQuestion">
-           <textarea rows="2" cols="40">
-              Question Text
-           </textarea>
-                    <div>
-                        <input type="number" name="Question Time">
-                        <label>Question Time</label>
-                        <input type="number" name="Question Value">
-                        <label>Question Value</label>
-                    </div>
+                <div class="buttons">
+                    <button class="butt"  id="addQuestionButton">Add question</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="buttns">
+        <div class="buttons">
+            <button class="butt"  id="updateButton">Update</button>
+        </div>
 
-    <div class="button">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                id='updateButton'>
-            Update
-        </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Cancel
-        </button>
+        <div class="buttons">
+            <button class="butt"  id="cancelButton">Cancel</button>
+        </div>
     </div>
 
 

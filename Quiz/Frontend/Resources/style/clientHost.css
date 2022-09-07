@@ -19,8 +19,10 @@ body{
 {
     width: 400px;
     height: 400px;
-    margin-left: 40%;
-    margin-top: 1.5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
 }
 
 #mainPanel
@@ -130,6 +132,12 @@ body{
     left: 28px;
     color: #993A9F;
     font-size: 12px;
+}
+
+.header
+{
+    display: flex;
+    align-items: center;
 }
 
 .footer
