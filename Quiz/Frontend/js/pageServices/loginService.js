@@ -22,7 +22,7 @@ function loginRequestCallback(data) {
     if (loginResponse.status === 'SUCCESS') {
         if (loginResponse.role === 'SUPERADMIN' || loginResponse.role === 'EDITOR') {
             alert("You logged in as admin user. We are redirecting you to the admin page now.");
-            setCookie('LOGGED', 'ADMIN');
+            setCookie('LOGGED', `${loginResponse.role}`);
             setCookie('userId', loginResponse.userId);
             location.href = "admin/allQuizzes.html"
         } else {

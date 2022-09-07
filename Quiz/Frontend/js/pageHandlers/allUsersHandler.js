@@ -1,4 +1,15 @@
 import {initBackButtonClient} from "../utilityServices/commonService.js";
+import {getCookie} from "../utilityServices/cookieService.js";
+checkSuperAdminStatus();
+function checkSuperAdminStatus() {
+    let role = getCookie('LOGGED');
+    if (role !== 'SUPERADMIN') {
+        location.href = '../admin/allQuizzes.html';
+    }
+}
+
+
+
 
 $.get('http://localhost:8080/Backend_war_exploded/all_users', {limit: 100, offset: 0}, (data) => {
     let allUsers = JSON.parse(data);
@@ -8,6 +19,7 @@ $.get('http://localhost:8080/Backend_war_exploded/all_users', {limit: 100, offse
     })
 })
 initBackButtonClient();
+
 function generateOneUserDiv(user) {
     let oneUserDiv = document.createElement('div',);
     oneUserDiv.className = 'oneUser';

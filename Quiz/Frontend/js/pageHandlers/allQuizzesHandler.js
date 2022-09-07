@@ -6,6 +6,15 @@ checkAdminStatus();
 initCreateQuizButton();
 initLogoutButton();
 
+function initAllUsersButton() {
+    let allUsersButton = document.getElementById('allUsersButton');
+    allUsersButton.onclick = () => {
+        location.href = '../user/allUsers.html'
+    }
+}
+
+initAllUsersButton();
+
 function initLogoutButton() {
     let logoutButton = document.getElementById('logoutButton');
     logoutButton.onclick = () => {
