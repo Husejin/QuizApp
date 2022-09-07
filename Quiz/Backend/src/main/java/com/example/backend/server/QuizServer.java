@@ -35,7 +35,7 @@ public class QuizServer {
     @OnMessage
     public Message handleTextMessage(Message message, Session session) throws EncodeException, IOException {
         if (UserRoles.isAdminRole(message.getUserRole())) {
-            return PriviledgedMessageService.handleMessage(message, currentQuizzes, session);
+            return PriviledgedMessageService.handleMessage(message, currentQuizzes,mappedSessions, session);
         }
         return NonPriviledgedMessageService.handleMessage(message, currentQuizzes, mappedSessions, session, sessions);
     }

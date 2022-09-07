@@ -1,3 +1,5 @@
+import {getCookie} from "../utilityServices/cookieService.js";
+
 export function generateSingleQuizDiv(quiz) {
     let singleQuizDiv = document.createElement('div');
     singleQuizDiv.className = 'oneQuiz';
@@ -13,7 +15,7 @@ export function generateSingleQuizDiv(quiz) {
     let image = document.createElement('img');
     image.className = 'imageStyle';
 
-    //TODO adapt src data:image/jpeg;base64 format
+
     image.src = quiz.alternateImage;
     let quizTitleDiv = document.createElement('div');
 
@@ -27,7 +29,7 @@ export function generateSingleQuizDiv(quiz) {
     let startButton = document.createElement('button');
     startButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
     startButton.innerHTML = 'Start'
-
+    startButton.onclick = ()=>startQuiz(quiz.id);
     let sp2Div1 = document.createElement('div');
     sp2Div1.className = 'sp2';
 
@@ -68,4 +70,19 @@ export function generateSingleQuizDiv(quiz) {
     singleQuizDiv.appendChild(sp2Div2);
 
     return singleQuizDiv;
+}
+
+function startQuiz(quizId) {
+    location.href = `./activeQuiz.html?id=${quizId}`;
+
+}
+
+function startQuiz(quizId) {
+    location.href = `./activeQuiz.html?id=${quizId}`;
+
+}
+
+function startQuiz(quizId) {
+    location.href = `./activeQuiz.html?id=${quizId}`;
+
 }

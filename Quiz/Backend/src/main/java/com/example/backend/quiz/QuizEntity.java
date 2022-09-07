@@ -10,7 +10,7 @@ public class QuizEntity {
     private String title;
     private String alternateImage;
     private List<QuestionEntity> questions;
-    private List<Integer> order;
+    private List<Double> order;
 
     public Integer getId() {
         return id;
@@ -44,11 +44,11 @@ public class QuizEntity {
         this.questions = questions;
     }
 
-    public List<Integer> getOrder() {
+    public List<Double> getOrder() {
         return order;
     }
 
-    public void setOrder(List<Integer> order) {
+    public void setOrder(List<Double> order) {
         this.order = order;
     }
 }

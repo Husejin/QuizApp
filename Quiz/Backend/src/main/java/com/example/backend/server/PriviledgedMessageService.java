@@ -5,10 +5,13 @@ import com.example.backend.quiz.QuizEntity;
 import com.example.backend.quiz.QuizzesService;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import javax.websocket.EncodeException;
 import javax.websocket.Session;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PriviledgedMessageService {
 
@@ -21,17 +24,19 @@ public class PriviledgedMessageService {
         return newPin;
     }
 
-    public static Message handleMessage(Message message, List<QuizControl> currentQuizzes, Session session) {
+    public static Message handleMessage(Message message, List<QuizControl> currentQuizzes, Map<String, Session> mappedSessions, Session session) {
         switch (message.getMessageType()) {
             case START -> {
                 String newPin = generateQuizPin(currentQuizzes);
                 QuizControl quizControl = new QuizControl();
                 quizControl.setQuizAdmin(session.getId());
-                quizControl.setCurrentQuestion(0);
+                quizControl.setCurrentQuestion(-1);
                 quizControl.setQuizPin(newPin);
                 quizControl.setLeaderBoard(new ArrayList<>());
                 quizControl.setQuizId(message.getQuizId());
                 currentQuizzes.add(quizControl);
+                message.setQuizPin(newPin);
+                return message;
             }
             case NEXT_QUESTION -> {
                 QuizControl currentQuiz = currentQuizzes.stream().filter(quizControl -> quizControl.getQuizAdmin().equals(session.getId())).findFirst().orElse(null);
@@ -44,12 +49,28 @@ public class PriviledgedMessageService {
                     currentQuiz.setCurrentQuestion(currentQuiz.getCurrentQuestion() + 1);
                     if (currentQuizEntity != null) {
                         List<QuestionEntity> questions = currentQuizEntity.getQuestions();
-                        int nextQuestionId = currentQuizEntity.getOrder().get(currentQuiz.getCurrentQuestion() - 1);
-                        QuestionEntity nextQuestion = questions.stream().filter(questionEntity -> questionEntity.getId() == nextQuestionId).findFirst().orElse(null);
+                        if (currentQuiz.getCurrentQuestion() > currentQuizEntity.getOrder().size()) {
+                            message.setMessageType(MessageType.LEADERBOARD);
+                            message.setResponseState(ResponseState.SUCCESS);
+                            return message;
+                        }
+                        Double nextQuestionId = currentQuizEntity.getOrder().get(currentQuiz.getCurrentQuestion());
+                        QuestionEntity nextQuestion = questions.stream().filter(questionEntity -> Double.parseDouble(String.valueOf(questionEntity.getId())) == nextQuestionId).findFirst().orElse(null);
                         if (nextQuestion != null) {
                             message.setQuestion(nextQuestion);
                             message.setMessageType(MessageType.NEXT_QUESTION);
                             message.setResponseState(ResponseState.SUCCESS);
+                            List<String> userNamesInCurrentQuiz = currentQuiz.getLeaderBoard().stream().map(LeaderBoardEntry::getUsername).toList();
+                            List<Session> currentPlayerSessions = mappedSessions.entrySet().stream().filter(stringSessionEntry ->
+                                    userNamesInCurrentQuiz.contains(stringSessionEntry.getKey())
+                            ).map(Map.Entry::getValue).toList();
+                            currentPlayerSessions.forEach(playerSession -> {
+                                try {
+                                    playerSession.getBasicRemote().sendObject(message);
+                                } catch (IOException | EncodeException e) {
+                                    e.printStackTrace();
+                                }
+                            });
                         } else
                             message.setResponseState(ResponseState.FAILURE);
                     }
