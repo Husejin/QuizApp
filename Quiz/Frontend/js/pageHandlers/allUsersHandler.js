@@ -72,12 +72,6 @@ function generateOneUserDiv(user) {
     let sp2Div1 = document.createElement('div');
     sp2Div1.className = 'sp2';
 
-    let updateButton = document.createElement('button');
-    updateButton.className = 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored';
-    updateButton.innerHTML = 'Update'
-    updateButton.onclick = () => {
-        location.href = `./updateUser.html?id=${user.id}`;
-    }
 
     let sp2Div2 = document.createElement('div');
     sp2Div2.className = 'sp2';
@@ -94,7 +88,6 @@ function generateOneUserDiv(user) {
         }
     }
 
-    sp2Div1.appendChild(updateButton);
     sp2Div2.appendChild(deleteButton);
 
     oneUserDiv.appendChild(sp1Div);
