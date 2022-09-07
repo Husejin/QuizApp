@@ -105,16 +105,5 @@ function generateLeaderBoard(leaderBoard) {
     })
     quizPinDiv.appendChild(leaderBoardDiv);
 
-    function generateCSV() {
-        const fileName = 'download';
-        const exportType = 'csv';
-
-    }
-
-    let exportButton = document.createElement('button');
-    exportButton.innerHTML = "Export";
-    exportButton.onclick = generateCSV;
-    quizPinDiv.appendChild(exportButton);
-
 
 }

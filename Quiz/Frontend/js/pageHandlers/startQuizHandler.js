@@ -9,3 +9,7 @@ start_btn.onclick = ()=>{
 exit_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide info box
 }
+
+continue_btn.onclick= ()=>{
+    location.href='./client.html'
+}
