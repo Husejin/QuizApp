@@ -64,21 +64,33 @@ function generatePinForm() {
     panel.innerHTML = '';
     let label = document.createElement('label');
     label.setAttribute('for', 'quizPin');
-    label.innerHTML = 'Quiz pin: ';
+    label.innerHTML = 'Quiz pin';
+    label.className = "info-title";
 
+    let divInput = document.createElement("div");
+    divInput.className = "userBox";
     let input = document.createElement('input');
     input.setAttribute('id', 'quizPin');
+    input.setAttribute('required', '');
+    input.setAttribute('autocomplete', 'off');
+    let labelInput = document.createElement("label");
+    labelInput.textContent = "Input Quiz Pin";
 
+    let divButton = document.createElement('div');
+    divButton.className = "buttons";
     let button = document.createElement('button');
     button.setAttribute('id', 'joinQuizButton');
+    button.className = "quit";
     button.innerHTML = 'Join';
 
 
     button.onclick = savePin;
-
+    divInput.appendChild(input);
+    divInput.appendChild(labelInput);
+    divButton.appendChild(button);
     panel.appendChild(label);
-    panel.appendChild(input);
-    panel.appendChild(button);
+    panel.appendChild(divInput);
+    panel.appendChild(divButton);
 }
 
 function savePin() {
@@ -101,20 +113,35 @@ function generateUsernameForm() {
     panel.innerHTML = '';
     let label = document.createElement('label');
     label.setAttribute('for', 'userName');
-    label.innerHTML = 'Username: ';
+    label.innerHTML = 'Username';
+    label.className = "info-title2";
 
+    let divInput = document.createElement("div");
+    divInput.className = "userBox";
     let input = document.createElement('input');
     input.setAttribute('id', 'userName');
+    input.setAttribute('required', '');
+    input.setAttribute('autocomplete', 'off');
+    let labelInput = document.createElement("label");
+    labelInput.textContent = "Input Username For Quiz";
 
+
+    let divButton = document.createElement('div');
+    divButton.className = "buttons";
     let button = document.createElement('button');
     button.setAttribute('id', 'usernameButton');
+    button.className = "quit";
     button.innerHTML = 'Start';
 
     button.onclick = joinQuizListener;
 
+
+    divInput.appendChild(input);
+    divInput.appendChild(labelInput);
+    divButton.appendChild(button);
     panel.appendChild(label);
-    panel.appendChild(input);
-    panel.appendChild(button);
+    panel.appendChild(divInput);
+    panel.appendChild(divButton);
 }
 
 
