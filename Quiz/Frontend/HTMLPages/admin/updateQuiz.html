@@ -24,7 +24,15 @@
 <body>
 
 <div class="header">
-    <img src="../../resources/images/LogoLigma2.png" class="logoImage"></img>
+    <div class="head1">
+        <span>UPDATE</span>
+    </div>
+    <div class="head1">
+        <img src="../../resources/images/LogoLigma2.png" class="logoImage"></img>
+    </div>
+    <div class="head1">
+        <span>QUIZ</span>
+    </div>
 </div>
 
 
@@ -42,18 +50,22 @@
     <div class="info">
         <div class="quizInfo">
 
-            <div>
-                <input type="text" id="quizTitle">
+            <div class="titleQuiz">
+                <input type="text" id="username" required="" autocomplete="off" title=" ">
                 <label>Quiz Title</label>
             </div>
-            <div>
-                <input type="file" id="imageInput" accept="image/png, image/jpeg">
-                <img alt="" id="image" src=""/>
+            <div  class="titleImage">
+                <div class="inputImage">
+                    <input  type="file" id="imageInput" accept="image/png, image/jpeg">
+                </div>
+                 <div class="showImage">
+                     <img alt="" id="image" accept="image/*" src=""/>
+                 </div>
             </div>
         </div>
 
         <div class="questionInfo" id="questionsDiv">
-            <div class="title">
+            <div class="titleButton">
                 <div class="buttons">
                     <button class="butt"  id="addQuestionButton">Add question</button>
                 </div>
@@ -61,7 +73,7 @@
         </div>
     </div>
 
-    <div class="buttns">
+    <div class="buttonsControl">
         <div class="buttons">
             <button class="butt"  id="updateButton">Update</button>
         </div>
@@ -80,11 +92,7 @@
 
 <!-- FOOTER -->
 <div class="footer">
-    <nav>
-        <i class="fa-solid fa-question"></i>
         <span>Husejin & Maid</span>
-    </nav>
-
 </div>
 
 

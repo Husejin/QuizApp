@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CREATE QUIZ</title>
+    <title>Ligma Create Quiz</title>
     <meta charset="utf-8">
 
     <!-- Font Awesome for icons-->
@@ -23,52 +23,54 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
-    <nav>
-        <a href="#">
-            <span>Create Quiz</span>
-        </a>
-    </nav>
+    <div class="head1">
+       <span>CREATE</span>
+    </div>
+    <div class="head1">
+        <img src="../../resources/images/LogoLigma2.png" class="logoImage"></img>
+    </div>
+    <div class="head1">
+        <span>QUIZ</span>
+    </div>
 </div>
 
 <div class="box">
 
     <div class="info">
         <div class="quizInfo">
-            <div class="title">
-                <span>QUIZ INFORMATIONS</span>
-            </div>
-            <div>
-                <input type="text" id="quizTitle">
+
+            <div class="titleQuiz">
+                <input type="text" id="username" required="" autocomplete="off" title=" ">
                 <label>Quiz Title</label>
             </div>
-            <div>
-                <input type="file" id="imageInput" accept="image/png, image/jpeg">
-                <img alt="" id="image" src=""/>
+            <div  class="titleImage">
+                <div class="inputImage">
+                    <input  type="file" id="imageInput" accept="image/png, image/jpeg">
+                </div>
+                <div class="showImage">
+                    <img alt="" id="image" accept="image/*" src=""/>
+                </div>
             </div>
         </div>
 
         <div class="questionInfo" id="questionsDiv">
-            <div class="title">
-                <span>QUESTIONS</span>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                        id="addQuestionButton">
-                    Add question
-                </button>
+            <div class="titleButton">
+                <div class="buttons">
+                    <button class="butt"  id="addQuestionButton">Add question</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="buttonsControl">
+        <div class="buttons">
+            <button class="butt"  id="createButton">Create</button>
+        </div>
 
-    <div class="button">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="createButton">
-            Create
-        </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="cancelButton">
-            Cancel
-        </button>
+        <div class="buttons">
+            <button class="butt"  id="cancelButton">Cancel</button>
+        </div>
     </div>
     <div class="button2">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="backButton">
