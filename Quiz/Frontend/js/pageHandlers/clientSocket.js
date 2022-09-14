@@ -28,8 +28,18 @@ function generateWaitingForm() {
     let panel = document.getElementById('mainPanel');
     panel.innerHTML = '';
     let waitingForQuestionDiv = document.createElement('div');
-    waitingForQuestionDiv.innerHTML = 'WAITING FOR NEXT QUESTION...';
+    waitingForQuestionDiv.innerHTML = 'Waiting for next question...';
+    waitingForQuestionDiv.className = "waitingQuestion";
+
+    let loadingPanel = document.createElement("div");
+    loadingPanel.className = "loadingPanel";
+
+    let divLoading = document.createElement("div");
+    divLoading.className = "mdl-spinner mdl-js-spinner is-active";
+
+    loadingPanel.appendChild(divLoading);
     panel.appendChild(waitingForQuestionDiv);
+    panel.appendChild(loadingPanel);
 }
 
 if (getCookie('quizPin') === null || getCookie('quizPin') === '') {
@@ -155,26 +165,55 @@ function generateQuestionForm(question) {
     console.log(question.answers);
     let answers = question.answers;
 
+    let divQuestions = document.createElement("div");
+    divQuestions.className = "divQuestions";
     let questionTextDiv = document.createElement('div');
     questionTextDiv.innerHTML = question.questionText;
-    let nextQuestionButton = document.createElement('button');
-    nextQuestionButton.innerHTML = "Submit";
+    questionTextDiv.className = " divAnswer1";
+
+    let divAnswer1 = document.createElement("div");
+    divAnswer1.className = "divAnswer";
     let answer1Button = document.createElement('input');
+    answer1Button.className = "inputAnswer";
     let answer1Label = document.createElement('label');
+    answer1Label.className = "labelAnswer";
     answer1Button.type = "checkbox";
     answer1Label.innerHTML = answers[0].answerText;
+    divAnswer1.appendChild(answer1Label);
+    divAnswer1.appendChild(answer1Button);
+
+    let divAnswer2 = document.createElement("div");
+    divAnswer2.className = "divAnswer";
     let answer2Button = document.createElement('input')
+    answer2Button.className = "inputAnswer";
     let answer2Label = document.createElement('label');
+    answer2Label.className = "labelAnswer";
     answer2Button.type = "checkbox";
     answer2Label.innerHTML = answers[1].answerText;
+    divAnswer2.appendChild(answer2Label);
+    divAnswer2.appendChild(answer2Button);
+
+    let divAnswer3 = document.createElement("div");
+    divAnswer3.className = "divAnswer";
     let answer3Button = document.createElement('input');
+    answer3Button.className = "inputAnswer";
     let answer3Label = document.createElement('label');
+    answer3Label.className = "labelAnswer";
     answer3Button.type = "checkbox";
     answer3Label.innerHTML = answers[2].answerText;
+    divAnswer3.appendChild(answer3Label);
+    divAnswer3.appendChild(answer3Button);
+
+    let divAnswer4 = document.createElement("div");
+    divAnswer4.className = "divAnswer4";
     let answer4Button = document.createElement('input');
+    answer4Button.className = "inputAnswer";
     let answer4Label = document.createElement('label');
+    answer4Label.className = "labelAnswer";
     answer4Button.type = "checkbox";
     answer4Label.innerHTML = answers[3].answerText;
+    divAnswer4.appendChild(answer4Label);
+    divAnswer4.appendChild(answer4Button);
 
     function submitAnswer() {
         answers[0].isCorrect = answer1Button.checked;
@@ -183,10 +222,18 @@ function generateQuestionForm(question) {
         answers[3].isCorrect = answer4Button.checked;
         question.answers = answers;
         testSocket.send(`{userRole: 'PLAYER', quizPin: '${getCookie('quizPin')}', messageType: 'ANSWER', userName: '${getCookie('userName')}', question: ${JSON.stringify(question)}}`);
+        console.log(getCookie('timer'));
+        clearInterval(getCookie('timer'));
+        eraseCookie('timer');
     }
-    clearInterval(getCookie('timer'));
-    eraseCookie('timer');
+
+
+    let divTime = document.createElement("div");
+    divTime.className = "divTime";
+    let timeRemainingLabel = document.createElement("label");
+    timeRemainingLabel.innerHTML = "Remaining time";
     let timeRemainingDiv = document.createElement('div');
+    timeRemainingDiv.className = "timeRemainNumber";
     let questionDuration = setInterval(() => {
         timeRemainingDiv.innerHTML = `${question.maxTime}`;
         question.maxTime = question.maxTime - 1;
@@ -195,32 +242,73 @@ function generateQuestionForm(question) {
             submitAnswer();
         }
     },1000);
+    setCookie('timer',questionDuration);
+    let divNextQuestBtn = document.createElement("div");
+    divNextQuestBtn.className = "divNextQuestBtn buttons";
+    let nextQuestionButton = document.createElement('button');
+    nextQuestionButton.innerHTML = "Submit";
+    nextQuestionButton.className = "butt";
 
     nextQuestionButton.onclick = submitAnswer;
 
-    panel.appendChild(questionTextDiv);
-    panel.appendChild(answer1Button);
-    panel.appendChild(answer1Label);
-    panel.appendChild(answer2Button);
-    panel.appendChild(answer2Label);
-    panel.appendChild(answer3Button);
-    panel.appendChild(answer3Label);
-    panel.appendChild(answer4Button);
-    panel.appendChild(answer4Label);
-    panel.appendChild(nextQuestionButton);
-    panel.appendChild(timeRemainingDiv);
+    divQuestions.appendChild(questionTextDiv);
+    divQuestions.appendChild(divAnswer1);
+    divQuestions.appendChild(divAnswer2);
+    divQuestions.appendChild(divAnswer3);
+    divQuestions.appendChild(divAnswer4);
+
+    divTime.appendChild(timeRemainingLabel);
+    divTime.appendChild(timeRemainingDiv);
+
+    divNextQuestBtn.appendChild(nextQuestionButton);
+
+    panel.appendChild(divQuestions);
+    panel.appendChild(divTime);
+    panel.appendChild(divNextQuestBtn);
 }
 
 function generateLeaderBoard(leaderBoard) {
     let panel = document.getElementById('mainPanel');
     panel.innerHTML = '';
+    let leaderBoardTitleDiv = document.createElement("div");
+    leaderBoardTitleDiv.className = "leaderBoardTitle";
+    let divUsername = document.createElement("div");
+    divUsername.className = "divUsername";
+    divUsername.innerHTML = "Username";
+    let divScore = document.createElement("div");
+    divScore.className = "divScore";
+    divScore.innerHTML = "Score";
+    leaderBoardTitleDiv.appendChild(divUsername);
+    leaderBoardTitleDiv.appendChild(divScore);
+
     let leaderBoardDiv = document.createElement('div');
+    leaderBoardDiv.className = "leaderBoardDiv";
     leaderBoard.forEach(leaderBoardEntry => {
         let div = document.createElement('div');
-        div.innerHTML = `${leaderBoardEntry.username} : ${leaderBoardEntry.points}`
+        div.className = "leaderBoardEntry";
+        let divUser = document.createElement("div");
+        divUser.className = "divUsername";
+        divUser.innerHTML =`${leaderBoardEntry.username}`
+        let divScore = document.createElement("div");
+        divScore.className = "divScore";
+        divScore.innerHTML = `${leaderBoardEntry.points}`
+        div.appendChild(divUser);
+        div.appendChild(divScore);
         leaderBoardDiv.appendChild(div);
     })
+
+    let divButton = document.createElement('div');
+    divButton.className = "buttons btn20";
+    let button = document.createElement('button');
+    button.setAttribute('id', 'backButton');
+    button.className = "quit";
+    button.innerHTML = 'Back';
+    button.onclick=()=>{location.href='./client.html'}
+    divButton.appendChild(button);
+
+    panel.appendChild(leaderBoardTitleDiv);
     panel.appendChild(leaderBoardDiv);
+    panel.appendChild(divButton);
 }
 function initLoginAndRegistrationButtons() {
     let loginButton = document.getElementById('loginButton');

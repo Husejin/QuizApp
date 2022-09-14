@@ -88,7 +88,8 @@ function startQuiz(hostSocket, user) {
 
 }
 
-function generateLeaderBoard(leaderBoard) {
+/*
+function generateLeaderBoard2(leaderBoard) {
     let playerCountDiv = document.getElementById('numberOfPeople');
     let quizPinDiv = document.getElementById('quizPin');
     playerCountDiv.innerHTML = '';
@@ -104,6 +105,54 @@ function generateLeaderBoard(leaderBoard) {
         leaderBoardDiv.appendChild(div);
     })
     quizPinDiv.appendChild(leaderBoardDiv);
+}
+*/
+function generateLeaderBoard(leaderBoard) {
+    let panel = document.getElementById('mainPanel');
+    panel.innerHTML = '';
+    let leaderBoardTitleDiv = document.createElement("div");
+    leaderBoardTitleDiv.className = "leaderBoardTitle";
+    let divUsername = document.createElement("div");
+    divUsername.className = "divUsername";
+    divUsername.innerHTML = "Username";
+    let divScore = document.createElement("div");
+    divScore.className = "divScore";
+    divScore.innerHTML = "Score";
+    leaderBoardTitleDiv.appendChild(divUsername);
+    leaderBoardTitleDiv.appendChild(divScore);
 
+    let leaderBoardDiv = document.createElement('div');
+    leaderBoardDiv.className = "leaderBoardDiv";
+    leaderBoard.forEach(leaderBoardEntry => {
+        let div = document.createElement('div');
+        div.className = "leaderBoardEntry";
+        let divUser = document.createElement("div");
+        divUser.className = "divUsername";
+        divUser.innerHTML =`${leaderBoardEntry.username}`
+        let divScore = document.createElement("div");
+        divScore.className = "divScore";
+        divScore.innerHTML = `${leaderBoardEntry.points}`
+        div.appendChild(divUser);
+        div.appendChild(divScore);
+        leaderBoardDiv.appendChild(div);
+    })
 
+    let divBtn = document.createElement("div");
+    divBtn.className = "sp2";
+    let divButton = document.createElement('div');
+    divButton.className = "buttons";
+    let button = document.createElement('button');
+    button.setAttribute('id', 'backButton');
+    button.className = "butt2";
+    button.innerHTML = 'Back';
+    button.onclick=()=>{
+        eraseCookie('userName');
+        eraseCookie('quizPin');
+        eraseCookie('question');
+        location.href='./allQuizzes.html'}
+    divButton.appendChild(button);
+    divBtn.appendChild(divButton);
+    panel.appendChild(leaderBoardTitleDiv);
+    panel.appendChild(leaderBoardDiv);
+    panel.appendChild(divBtn);
 }

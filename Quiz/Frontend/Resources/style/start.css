@@ -80,7 +80,6 @@ width: 450px;
 
 .info_box .info-title{
     height: 60px;
-    width: 100%;
     border-bottom: 1px solid lightgrey;
     display: flex;
     align-items: center;
